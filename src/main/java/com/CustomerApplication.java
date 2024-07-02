@@ -6,7 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.transaction.annotation.Transactional;
+
+import jakarta.transaction.Transactional;
 
 @SpringBootApplication 
 public class CustomerApplication {
@@ -17,17 +18,18 @@ public class CustomerApplication {
     SpringApplication.run(CustomerApplication.class);
   }
  
-//  @Bean
+  @Bean
   //@Transactional
   public CommandLineRunner demo(CustomerRepository repository) {
     return (args) -> {
   
     	 log.info("1111111111111");
-     /*
-      Customer customer = repository.findById(1L);
+     
+      //Customer customer = repository.findById(2L);
+    	 Customer customer = repository.findById(2l);
       log.info(customer.toString());
       log.info("");
-*/
+
     	 
     	 
     };
