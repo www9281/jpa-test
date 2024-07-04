@@ -16,12 +16,8 @@ public class Product {
 
 	  @Id
 	  @GeneratedValue(strategy=GenerationType.IDENTITY)
-	  @Column(name = "product_id")
 	  private Long productId;
-	
-	  //@JoinColumn(name = "customer_id") 
-	  //private Long customerId;	 
-	  
+		  
 	  @Column(name = "product_name")
 	  private String productName;
 	  

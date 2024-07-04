@@ -19,7 +19,7 @@ public class Customer {
 
 	  @Id
 	  @GeneratedValue(strategy=GenerationType.IDENTITY)
-	  @Column(name="customer_id")
+	  //@Column(name="customer_id")
 	   private Long customerId;
 	  
 	  @Column(name="first_name")
@@ -29,7 +29,7 @@ public class Customer {
 	  private String lastName;
 	  
 	 // @OneToMany(mappedBy = "customer", targetEntity = Product.class)
-	  @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+	  @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
 	  private List<Product> product = new ArrayList<>() ;
 
 	  public Customer() {}
