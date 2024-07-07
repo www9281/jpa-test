@@ -20,10 +20,10 @@ import lombok.extern.slf4j.Slf4j;
 @ToString
 @Slf4j
 @SpringBootApplication 
-class JpaTestApplication {
+class JpaTestTestApplication {
 	
 	  public static void main(String[] args) {
-		  SpringApplication.run(JpaTestApplication.class); 
+		  SpringApplication.run(JpaTestTestApplication.class); 
 	  }
 	   
 

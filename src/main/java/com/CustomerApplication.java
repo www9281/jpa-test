@@ -16,7 +16,7 @@ import lombok.ToString;
 @ToString
 @SpringBootApplication 
 public class CustomerApplication {
-
+/*
   private static final Logger log = LoggerFactory.getLogger(CustomerApplication.class);
 
   public static void main(String[] args) {
@@ -39,5 +39,5 @@ public class CustomerApplication {
     	 
     };
   }
-
+*/
 }
