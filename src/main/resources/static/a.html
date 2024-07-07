@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+	   
+	<!-- ibsheet css -->
+	<link rel="stylesheet" href="https://demo.ibleaders.com/ibsheet/v8/samples/customer-sample/assets/ibsheet/css/default/main.css"/><!--  ibsheet 필수 js -->
+	<script src="https://demo.ibleaders.com/ibsheet/v8/samples/customer-sample/assets/ibsheet/ibleaders.js"></script>
+	<script src="https://demo.ibleaders.com/ibsheet/v8/samples/customer-sample/assets/ibsheet/ibsheet.js"></script>
+	<script src="https://demo.ibleaders.com/ibsheet/v8/samples/customer-sample/assets/ibsheet/locale/ko.js"></script>
+	
+	<!--  ibsheet 선택/추가 js -->
+	<script src="https://demo.ibleaders.com/ibsheet/v8/samples/customer-sample/assets/ibsheet/plugins/ibsheet-common.js"></script>
+	<script src="https://demo.ibleaders.com/ibsheet/v8/samples/customer-sample/assets/ibsheet/plugins/ibsheet-dialog.js"></script>
+	<script src="https://demo.ibleaders.com/ibsheet/v8/samples/customer-sample/assets/ibsheet/plugins/ibsheet-excel.js"></script>
+
+</head>
+<body>
+	 
+	<div class='ibsheet-wrap' id='descFunc'><div><button type='button' class='mgr10' onclick='ib.sampleBtn(this)'>getSaveJson</button>
+	<button type='button' class='mgr10' onclick='ib.sampleBtn(this)'>getValue</button><button type='button' class='mgr10' onclick='ib.sampleBtn(this)'>setValue</button></div></div>
+	
+	<div style='height:calc(100% - 20px)'><div id='sheetDiv' style='width:100%;height:100%'></div></div>
+	 
+	<script type="text/javascript">
+	var ib = ib||{};
+	ib = {
+	//시트 초기화 구문
+	'init':{
+	  //공통기능 설정 부분
+	  "Cfg": {
+	    "SearchMode": 2,
+	    "JsonDataSep" :"#",
+	    "HeaderMerge": 3,
+	    "MessageWidth": 300
+	  },
+	  "Def": {
+	    "Row": {
+	      "CanFormula": true
+	    }
+	  },
+	  //틀고정 좌측 컬럼 설정
+	  "LeftCols": [
+	    {"Type": "Int","Width": 50,"Align": "Center","Name": "SEQ"}
+	  ],
+	  //중앙(메인) 컬럼 설정
+	  "Cols": [
+	    {"Header": "문자열(Text)","Type": "Text","Name": "TextData","Width": 100,"Align": "Center","CanEdit": 1},
+	    {"Header": "A컬럼","Type": "Text","Name": "A#Name","Width": 100,"Align": "Center","CanEdit": 1}, //조회 데이터중 A:{Name}의 값을 표시
+	   
+	    {"Header": "버튼(Button)","Type": "Button","Name": "ISO","Width": 80,"Align": "Left","CanEdit": 0,"Button": "Button"},
+	    {"Header": "정수(Int)","Type": "Int","Name": "IntData","Width": 80,"Align": "Right","CanEdit": 1},
+	    {"Header": "실수(Float)","Type": "Float","Name": "FloatData","Width": 80,"Align": "Right","CanEdit": 1},
+	    {"Header": "날짜(Date)","Type": "Date","Name": "DateData","Width": 150,"Align": "Center","CanEdit": 1,"EmptyValue": "날짜를 입력해주세요"},
+	  
+	  ]
+	},
+	//시트 이벤트
+	'event':{
+	  onRenderFirstFinish : function(paramObject) {
+			sheet.loadSearchData(ib.data);
+	  }
+	},
+	//시트객체 생성
+
+	'create':function () {
+	    var options = this.init;
+	
+	    options.Events = this.event;
+	    IBSheet.create({
+	      id: 'sheet', // 생성할 시트의 id
+	      el: 'sheetDiv', // 시트를 생성할 Dom 객체 및 id
+	      options: options, // 생성될 시트의 속성
+	      //data: this.data // 생성될 시트의 정적데이터
+	    });
+	  },
+	
+	  
+	//화면 기능
+	'sampleBtn':function () {
+		 var btnObj = arguments[0];
+	
+	    if (btnObj.innerText === 'getSaveJson') {
+	    	alert(JSON.stringify(sheet.getSaveJson()));
+	    }else if(btnObj.innerText === 'getValue'){
+	    	alert(sheet.getValue(sheet.getFocusedRow(),"A#Name"));
+	    
+	    }else{
+	    	sheet.setValue(sheet.getFocusedRow(),"A#Name","마바사")
+	    }
+	  },
+	//조회 데이터
+	'data':[{A:{Name:"가나다"},"TextData":"장순연","ComboData":"01","ISO":"AUD","Currency":"호주 달러","IntData":0,"FloatData":15.25,"DateData":"","PhoneNo":"01075116521","IDNO":"7801221384251","LinkData":"|./confirm.do|확정|_self ","LinesData":"전국이 대체로 흐리거나 구름많은 가운데 대기불안정으로 중부내륙은 아침과 오후 한때, 남부내륙은 오후 한때 소나기가 오는 곳이 있겠습니다.","Userformat":"1234567890","ImageData":"|https://demo.ibleaders.com/ibsheet/v8/samples/customer-sample/assets/imgs/am.jpg|||||./nt/gripInTran.do|_self","PassData":123456,"RadioData":"H:1","CheckData":1},{"TextData":"김정호","ComboData":"02","ISO":"ALL","Currency":"알바니아 렉","IntData":0,"FloatData":234,"DateData":"20100120","PhoneNo":"","IDNO":"6807151852148","LinkData":"|./delayCos.do|재고|_self ","LinesData":"중부지방은 장마전선의 영향을 받겠고, 남부지방은 북태평양 고기압의 가장자리에 들겠습니다.","Userformat":"1111155555","ImageData":"|https://demo.ibleaders.com/ibsheet/v8/samples/customer-sample/assets/imgs/am.jpg|||||","PassData":"75646","RadioData":"M:1","CheckData":0}]
+	}
+	ib.create();
+	</script>
+	
+</body>
+</html>
+
