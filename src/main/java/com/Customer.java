@@ -18,8 +18,7 @@ import jakarta.persistence.Table;
 public class Customer {
 
 	  @Id
-	  @GeneratedValue(strategy=GenerationType.IDENTITY)
-	  //@Column(name="customer_id")
+	 // @GeneratedValue(strategy=GenerationType.IDENTITY)
 	   private Long customerId;
 	  
 	  @Column(name="first_name")
@@ -29,7 +28,8 @@ public class Customer {
 	  private String lastName;
 	  
 	 // @OneToMany(mappedBy = "customer", targetEntity = Product.class)
-	  @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST)
+	  //@OneToMany(cascade = CascadeType.PERSIST)
+	  @OneToMany(cascade = CascadeType.ALL)
 	  private List<Product> product = new ArrayList<>() ;
 
 	  public Customer() {}

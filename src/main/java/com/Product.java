@@ -9,9 +9,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name="product")
+@Getter
+@Setter 
+
 public class Product {
 
 	  @Id
@@ -21,9 +26,9 @@ public class Product {
 	  @Column(name = "product_name")
 	  private String productName;
 	  
-	  @ManyToOne(fetch = FetchType.EAGER)	
-	  @JoinColumn(name = "customer_id") 
-	  Customer customer;
+	  //@ManyToOne(fetch = FetchType.LAZY)	
+	  //@JoinColumn(name = "customer_id") 
+	  //Customer customer;
 
 	  protected Product() {}
 
@@ -36,35 +41,4 @@ public class Product {
 	  }
 
 
-	public Long getProductId() {
-		return productId;
-	}
-
-
-	public void setProductId(Long productId) {
-		this.productId = productId;
-	}
-
-
-	public String getProductName() {
-		return productName;
-	}
-
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-
-	
 }
